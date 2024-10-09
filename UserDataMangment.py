@@ -13,6 +13,10 @@ def create_user_data_dict(user_data_list):
     gas_payment = get_gas_account_payment()
     fuel_payment = get_fuel_account_payment()
     carbon_foot_print = calc_carbon_foot_print(elec_payment, water_payment, gas_payment, fuel_payment)
+    electricity_cfp = calc_specific_cfp(elec_payment, consts.EMISSION_FACTOR_ELECTRICITY)
+    water_cfp = calc_specific_cfp(water_payment, consts.EMISSION_FACTOR_WATER)
+    gas_cfp = calc_specific_cfp(gas_payment, consts.EMISSION_FACTOR_GAS)
+    fuel_cfp = calc_specific_cfp(fuel_payment, consts.EMISSION_FACTOR_FUEL)
     user_data_dict = {
         "FULL_NAME": name,
         "ID_NUMBER": id,
@@ -23,7 +27,11 @@ def create_user_data_dict(user_data_list):
         "WATER_ACCOUNT_PAYMENT": water_payment,
         "GAS_ACCOUNT_PAYMENT": gas_payment,
         "CAR_FUEL_PAYMENT": fuel_payment,
-        "CARBON_FOOT_PRINT": carbon_foot_print
+        "TOTAL_CARBON_FOOT_PRINT": carbon_foot_print,
+        "ELECTRICITY_CARBON_FOOT_PRINT": electricity_cfp,
+        "WATER_CARBON_FOOT_PRINT": water_cfp,
+        "GAS_CARBON_FOOT_PRINT": gas_cfp,
+        "FUEL_CARBON_FOOT_PRINT": fuel_cfp
 
     }
     user_data_list.append(user_data_dict)
@@ -119,3 +127,8 @@ def calc_carbon_foot_print(elec_payment, water_payment, gas_payment, fuel_paymen
                          gas_payment * consts.EMISSION_FACTOR_GAS +
                          fuel_payment * consts.EMISSION_FACTOR_FUEL)
     return carbon_foot_print
+
+
+def calc_specific_cfp(source, emission):
+    cfp = source * emission
+    return cfp
