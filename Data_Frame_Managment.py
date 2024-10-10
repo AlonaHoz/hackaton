@@ -7,8 +7,6 @@ df = pd.DataFrame(data, columns=['USERNAME','CARBON_FOOT_PRINT',])
 
 df.set_index(['USERNAME', 'CARBON_FOOT_PRINT'])
 
-c = 'CARBON_FOOT_PRINT'
-
-b = df[c].sum()
+b = df['CARBON_FOOT_PRINT'].sum()
 
 print(df)
