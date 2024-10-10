@@ -5,7 +5,7 @@ from pages import password_and_username
 from pages import create_new_account
 
 
-def create_user_data_dict(user_data_list):
+def collect_data():
     name = get_full_name(create_new_account.Full_Name)
     id = get_id(create_new_account.ID_Number)
     username = get_user_name(create_new_account.UserName)
@@ -14,25 +14,38 @@ def create_user_data_dict(user_data_list):
     water_payment = get_water_account_payment()
     gas_payment = get_gas_account_payment()
     fuel_payment = get_fuel_account_payment()
-    carbon_foot_print = calc_carbon_foot_print(elec_payment, water_payment, gas_payment, fuel_payment)
-    electricity_cfp = calc_specific_cfp(elec_payment, consts.EMISSION_FACTOR_ELECTRICITY)
-    water_cfp = calc_specific_cfp(water_payment, consts.EMISSION_FACTOR_WATER)
-    gas_cfp = calc_specific_cfp(gas_payment, consts.EMISSION_FACTOR_GAS)
-    fuel_cfp = calc_specific_cfp(fuel_payment, consts.EMISSION_FACTOR_FUEL)
+    the_list = [name, id, username, password, elec_payment, water_payment, gas_payment,
+                fuel_payment]
+    return the_list
+
+the_list = collect_data()
+
+def calc_list():
+    carbon_foot_print = calc_carbon_foot_print(the_list[4], the_list[5], the_list[6], the_list[7])
+    electricity_cfp = calc_specific_cfp(the_list[4], consts.EMISSION_FACTOR_ELECTRICITY)
+    water_cfp = calc_specific_cfp(the_list[5], consts.EMISSION_FACTOR_WATER)
+    gas_cfp = calc_specific_cfp(the_list[6], consts.EMISSION_FACTOR_GAS)
+    fuel_cfp = calc_specific_cfp(the_list[7], consts.EMISSION_FACTOR_FUEL)
+    list_list = [carbon_foot_print, electricity_cfp, water_cfp, gas_cfp, fuel_cfp]
+    return list_list
+
+foot_print_list = calc_list()
+
+def create_user_data_dict():
     user_data_dict = {
-        "FULL_NAME": name,
-        "ID_NUMBER": id,
-        "USERNAME": username,
-        "PASSWORD": password,
-        "ELECTRICAL_ACCOUNT_PAYMENT": elec_payment,
-        "WATER_ACCOUNT_PAYMENT": water_payment,
-        "GAS_ACCOUNT_PAYMENT": gas_payment,
-        "CAR_FUEL_PAYMENT": fuel_payment,
-        "TOTAL_CARBON_FOOT_PRINT": carbon_foot_print,
-        "ELECTRICITY_CARBON_FOOT_PRINT": electricity_cfp,
-        "WATER_CARBON_FOOT_PRINT": water_cfp,
-        "GAS_CARBON_FOOT_PRINT": gas_cfp,
-        "FUEL_CARBON_FOOT_PRINT": fuel_cfp
+        "FULL_NAME": the_list[0],
+        "ID_NUMBER": the_list[1],
+        "USERNAME": the_list[2],
+        "PASSWORD": the_list[3],
+        "ELECTRICAL_ACCOUNT_PAYMENT": the_list[4],
+        "WATER_ACCOUNT_PAYMENT": the_list[5],
+        "GAS_ACCOUNT_PAYMENT": the_list[6],
+        "CAR_FUEL_PAYMENT": the_list[7],
+        "TOTAL_CARBON_FOOT_PRINT": foot_print_list[0],
+        "ELECTRICITY_CARBON_FOOT_PRINT": foot_print_list[1],
+        "WATER_CARBON_FOOT_PRINT": foot_print_list[2],
+        "GAS_CARBON_FOOT_PRINT": foot_print_list[3],
+        "FUEL_CARBON_FOOT_PRINT": foot_print_list[4]
 
     }
     user_data_list.append(user_data_dict)
