@@ -132,3 +132,10 @@ def calc_carbon_foot_print(elec_payment, water_payment, gas_payment, fuel_paymen
 def calc_specific_cfp(source, emission):
     cfp = source * emission
     return cfp
+
+def calc personal_user_percent_of_local_cfp_sum(cfp_local_sum, user_cfp_sum):
+    user_percent = (user_cfp_sum * 100)/cfp_local_sum
+    return user_percent
+
+
+    
