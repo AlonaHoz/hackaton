@@ -10,7 +10,7 @@ df.set_index(['USERNAME', "WATER_CARBON_FOOT_PRINT"])
 
 cfp_local_sum = df["WATER_CARBON_FOOT_PRINT"].sum()
 
-data = pd.read_excel(exiting)
+data = pd.read_excel(the_data_base)
 
 print(df)
 
@@ -28,8 +28,8 @@ def create_user_data_dict():
         "ELECTRICAL_ACCOUNT_PAYMENT": the_list[4],
         "WATER_ACCOUNT_PAYMENT": the_list[5],
         "GAS_ACCOUNT_PAYMENT": the_list[6],
-        "CAR_FUEL_PAYMENT": the_list[7],
-        "TOTAL_CARBON_FOOT_PRINT": foot_print_list[0],
+        "FUEL_ACCOUNT_PAYMENT": the_list[7],
+        "PERSONAL_CFP_PERCENT": foot_print_list[0],
         "ELECTRICITY_CARBON_FOOT_PRINT": foot_print_list[1],
         "WATER_CARBON_FOOT_PRINT": foot_print_list[2],
         "GAS_CARBON_FOOT_PRINT": foot_print_list[3],
@@ -37,9 +37,18 @@ def create_user_data_dict():
 
     }
     return user_data_dict
-x = create_user_data_dict()
 
-# Append the new row to the DataFrame
-df = pd.concat([data, pd.DataFrame([x])], ignore_index=True)
+def extend_list():
+    x = create_user_data_dict()
+    cc = pd.concat([data, pd.DataFrame([x])], ignore_index=True)
+    return cc
 
-print(df)
+graf = extend_list()
+
+
+present = pd.DataFrame(data, columns=["USERNAME", "PERSONAL_CFP_PERCENT"])
+
+cfp_local_sum = df["PERSONAL_CFP_PERCENT"].sum()
+
+
+
