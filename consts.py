@@ -1,5 +1,9 @@
 # emission factors for imaginary companies
+import base64
+
 EMISSION_FACTOR_ELECTRICITY = 0.85
 EMISSION_FACTOR_WATER = 0.31
 EMISSION_FACTOR_GAS = 2.392
 EMISSION_FACTOR_FUEL = 2.54
+
+

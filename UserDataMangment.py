@@ -24,7 +24,6 @@ def create_user_data_dict(user_data_list):
         "ID_NUMBER": id,
         "USERNAME": username,
         "PASSWORD": password,
-        "PROFILE_IMAGE_FILE": profile_img_file,
         "ELECTRICAL_ACCOUNT_PAYMENT": elec_payment,
         "WATER_ACCOUNT_PAYMENT": water_payment,
         "GAS_ACCOUNT_PAYMENT": gas_payment,
