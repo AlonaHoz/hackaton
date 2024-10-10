@@ -5,8 +5,9 @@ from PIL import Image
 st.header("GreenFoot🍃")
 st.subheader("for a green future")
 
-world_img = Image.open('world_hand_img.webp')
-st.image(world_img)
+foot_print_img = Image.open('the_img.png')
+st.image(foot_print_img, width=400)
+
 
 
 
