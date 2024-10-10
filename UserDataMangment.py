@@ -1,12 +1,12 @@
 from Main import user_data_list
 import consts
-
+from pages import password_and_username
 
 def create_user_data_dict(user_data_list):
     name = get_full_name()
     id = get_id()
-    username = get_user_name()
-    password = get_password()
+    username = get_user_name(password_and_username.user_name)
+    password = get_password(password_and_username.password)
     profile_img_file = get_profile_pic_file()
     elec_payment = get_electricity_account_payment()
     water_payment = get_water_account_payment()
@@ -22,7 +22,7 @@ def create_user_data_dict(user_data_list):
         "ID_NUMBER": id,
         "USERNAME": username,
         "PASSWORD": password,
-        "PROFILE_IMAGE_FILE": None,
+        "PROFILE_IMAGE_FILE": profile_img_file,
         "ELECTRICAL_ACCOUNT_PAYMENT": elec_payment,
         "WATER_ACCOUNT_PAYMENT": water_payment,
         "GAS_ACCOUNT_PAYMENT": gas_payment,
@@ -58,21 +58,18 @@ def get_id():
     return id_num
 
 
-def get_user_name():
-    user_name = input("enter user name: ")
+def get_user_name(user_name):
     valid_username = True
     if len(user_data_list) > 1:
         for user_data_dict in user_data_list:
             if user_data_dict["USER_NAME"] != user_name:
                 valid_username = False
     while not valid_username:
-        user_name = input("enter user name: ")
-    user_name = [user_name]
+        user_name = [user_name]
     return user_name
 
 
-def get_password():
-    password = input("enter password")
+def get_password(password):
     password = [password]
     return password
 

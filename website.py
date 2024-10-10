@@ -1,4 +1,3 @@
-from pages import password_and_username
+import streamlit
 
-password_and_username.page_1()
-
+streamlit.header("GreenFoot🍃")
