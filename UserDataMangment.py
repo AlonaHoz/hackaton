@@ -1,5 +1,6 @@
 from Main import user_data_list
 import consts
+from pages import create_new_account
 
 
 def create_user_data_dict(user_data_list):
@@ -18,15 +19,15 @@ def create_user_data_dict(user_data_list):
     gas_cfp = calc_specific_cfp(gas_payment, consts.EMISSION_FACTOR_GAS)
     fuel_cfp = calc_specific_cfp(fuel_payment, consts.EMISSION_FACTOR_FUEL)
     user_data_dict = {
-        "FULL_NAME": name,
-        "ID_NUMBER": id,
-        "USERNAME": username,
-        "PASSWORD": password,
+        "FULL_NAME": create_new_account.Full_Name,
+        "ID_NUMBER": create_new_account.ID_Number,
+        "USERNAME": create_new_account.UserName,
+        "PASSWORD": create_new_account.Password,
         "PROFILE_IMAGE_FILE": None,
-        "ELECTRICAL_ACCOUNT_PAYMENT": elec_payment,
-        "WATER_ACCOUNT_PAYMENT": water_payment,
-        "GAS_ACCOUNT_PAYMENT": gas_payment,
-        "CAR_FUEL_PAYMENT": fuel_payment,
+        "ELECTRICAL_ACCOUNT_PAYMENT": create_new_account.electrical_payment,
+        "WATER_ACCOUNT_PAYMENT": create_new_account.water_payment,
+        "GAS_ACCOUNT_PAYMENT": create_new_account.gas_payment,
+        "CAR_FUEL_PAYMENT": create_new_account.car_fuel_payment,
         "TOTAL_CARBON_FOOT_PRINT": carbon_foot_print,
         "ELECTRICITY_CARBON_FOOT_PRINT": electricity_cfp,
         "WATER_CARBON_FOOT_PRINT": water_cfp,
