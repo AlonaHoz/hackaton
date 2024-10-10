@@ -2,9 +2,10 @@ from Main import user_data_list
 import consts
 import streamlit
 from pages import password_and_username
+from pages import  create_new_account
 
 def create_user_data_dict(user_data_list):
-    name = get_full_name()
+    name = get_full_name(create_new_account.Full_Name)
     id = get_id()
     username = get_user_name(password_and_username.user_name)
     password = get_password(password_and_username.password)
@@ -61,8 +62,7 @@ def get_user_data_dict(user_data_list, username):
             return user_dict
 
 
-def get_full_name():
-    full_name = create_new_account.Full_Name
+def get_full_name(full_name):
     while not full_name.isalpha():
         if not full_name.isalpha():
             streamlit.text("invalid input")
