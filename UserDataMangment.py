@@ -1,12 +1,11 @@
 from Main import user_data_list
 import consts
 import streamlit
-from pages import password_and_username
 from pages import create_new_account
 
 
 def collect_data():
-    name = get_full_name(create_new_account.Full_Name)
+    name = get_full_name(create_new_account.Full_name)
     id = get_id(create_new_account.ID_Number)
     username = get_user_name(create_new_account.UserName)
     password = get_password(create_new_account.Password)
