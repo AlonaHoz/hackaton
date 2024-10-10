@@ -16,7 +16,7 @@ existing_account = []
 valid_info = []
 
 st.header("Welcome To GREENFOOT🍃")
-st.subheader("create your account :) please press enter after each answer")
+st.subheader("create your account :)")
 
 First_Name = st.text_input("First name: ")
 if len(First_Name) > 0:
